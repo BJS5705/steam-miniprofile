@@ -23,7 +23,7 @@
       let language = searchParams.get('lang') ? searchParams.get('lang') : 'koreana';
       
       // 일반 URL로 변경하고 nocache 파라미터 추가
-      let steamURL = `https://steamcommunity.com/miniprofile/${steamId}?l=${language}&nocache=${new Date().getTime()}`;
+      let steamURL = `https://steamcommunity.com/miniprofile/${steamId}?l=${language}`;
       let vanityProfileURL = `https://steamcommunity.com/id/${vanityId}`;
 
       $.get(steamURL, function (data) {
