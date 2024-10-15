@@ -22,8 +22,8 @@
       // For list of available languages, check out README on https://github.com/gamer2810/steam-miniprofile
       let language = searchParams.get('lang') ? searchParams.get('lang') : 'koreana';
       
-      // 일반 URL로 변경하고 nocache 파라미터 추가
-      let steamURL = `https://steamcommunity.com/miniprofile/${steamId}?l=${language}`;
+      // 일반 URL로 변경
+      let steamURL = `https://steamcommunity.com/miniprofile/${steamId}`;
       let vanityProfileURL = `https://steamcommunity.com/id/${vanityId}`;
 
       $.get(steamURL, function (data) {
