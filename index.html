@@ -25,7 +25,7 @@
       let language = searchParams.get('lang') ? searchParams.get('lang') : 'koreana';
       
       // Vercel API URL로 변경
-      let apiURL = `https://your-vercel-project.vercel.app/api/steamProxy?steamId=${steamId}&language=${language}`;
+      let apiURL = `https://steam-miniprofile.vercel.app/api/steamProxy?steamId=${steamId}&language=${language}`;
       let vanityProfileURL = `https://steamcommunity.com/id/${vanityId}`;
 
       $.get(apiURL, function (data) {
