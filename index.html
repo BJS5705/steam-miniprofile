@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
-
 
 <head>
   <link async rel="preload" as="style"
@@ -18,20 +16,17 @@
   <script defer async>
     $(function () {
       let searchParams = new URLSearchParams(window.location.search);
-      let corsHost = "https://steam-miniprofile-cors.glitch.me/"
       let steamId = searchParams.get('accountId') ? searchParams.get('accountId') : '76561198055079301';
       let interactive = searchParams.get('interactive') ? searchParams.get('interactive') : false;
       let vanityId = searchParams.get('vanityId') ? searchParams.get('vanityId') : 'intheheaven';
       // For list of available languages, check out README on https://github.com/gamer2810/steam-miniprofile
       let language = searchParams.get('lang') ? searchParams.get('lang') : 'koreana';
-      let corsURL = `${corsHost}https%3A%2F%2Fsteamcommunity.com%2Fminiprofile%2F${steamId}?l=${language}&nocache=${timestamp}`;
-      let steamURL = `https://steamcommunity.com/id/${vanityId}`;
       
-      if(steamId === '76561198055079301') {
-        steamId = '76561198055079301';
-      }
+      // 일반 URL로 변경하고 nocache 파라미터 추가
+      let steamURL = `https://steamcommunity.com/miniprofile/${steamId}?l=${language}&nocache=${new Date().getTime()}`;
+      let vanityProfileURL = `https://steamcommunity.com/id/${vanityId}`;
 
-      $.get(corsURL, function (data) {
+      $.get(steamURL, function (data) {
         $("#includedContent").html(data).hide();
         if ($("#includedContent").children().text().length != 0) {
           $(".default").fadeOut("fast", function () {
@@ -41,18 +36,18 @@
 
           window.parent.postMessage(
             {
-              state:"loaded"
+              state: "loaded"
             }, {
-            targetOrigin: '*',
-          })
+              targetOrigin: '*',
+            })
         }
-        
-        if(interactive && vanityId) {
+
+        if (interactive && vanityId) {
           document.body.style.cursor = "pointer";
-          $(document).on('click', 'div.miniprofile_container', function(e){ 
-              e.preventDefault(); 
-              var url = $(this).attr('href'); 
-              window.open(steamURL, '_blank');
+          $(document).on('click', 'div.miniprofile_container', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            window.open(vanityProfileURL, '_blank');
           });
         }
       });
@@ -82,7 +77,7 @@
         <span class="friend_status_offline">Offline</span>
       </div>
     </div>
-    <div class="miniprofile_detailssection  not_in_game miniprofile_backdrop">
+    <div class="miniprofile_detailssection not_in_game miniprofile_backdrop">
       <div class="miniprofile_featuredcontainer">
         <img
           src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/3027110/a7f29dbd93b79aaf53d3b43faa95fb0d07aa3277.png"
@@ -100,7 +95,6 @@
       </div>
     </div>
   </div>
-
 
 </body>
 
