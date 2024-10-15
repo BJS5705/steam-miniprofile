@@ -15,15 +15,13 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer async>
     $(function () {
-      // 기본 값 설정
-      let steamId = '76561198055079301'; // 기본 steamId
-      let language = 'koreana'; // 기본 language
-      
       // Serverless Function URL
-      let apiURL = `https://steam-miniprofile.vercel.app/api/steamProxy?steamId=${steamId}&language=${language}`;
+      let apiURL = `https://steam-miniprofile.vercel.app/api/steamProxy`;
 
       $.get(apiURL, function (data) {
+        console.log(data);  // 데이터 확인용 콘솔 로그
         $("#includedContent").html(data).hide();
+        
         if ($("#includedContent").children().text().length != 0) {
           $(".default").fadeOut("fast", function () {
             $(".default").replaceWith(data);
@@ -38,7 +36,6 @@
             })
         }
       });
-
     });
   </script>
 </head>
@@ -46,37 +43,7 @@
 <body style="height: fit-content; width: fit-content;">
   <div id="includedContent"></div>
   <div class="miniprofile_container default">
-    <div class="miniprofile_background">
-      <img class="miniprofile_backgroundblur"
-        src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb.jpg">
-    </div>
-    <div class="miniprofile_playersection ">
-      <div class="playersection_avatar border_color_offline">
-        <img src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg"
-          srcset="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg 1x, https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg 2x">
-      </div>
-      <div class="player_content">
-        <span class="persona offline">Loading</span>
-        <span class="friend_status_offline">Offline</span>
-      </div>
-    </div>
-    <div class="miniprofile_detailssection not_in_game miniprofile_backdrop">
-      <div class="miniprofile_featuredcontainer">
-        <img
-          src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/3027110/a7f29dbd93b79aaf53d3b43faa95fb0d07aa3277.png"
-          class="badge_icon">
-        <div class="description">
-          <div class="name">Unknown</div>
-          <div class="xp">? XP</div>
-        </div>
-      </div>
-      <div class="miniprofile_featuredcontainer">
-        <div class="friendPlayerLevel lvl_0"><span class="friendPlayerLevelNum">?</span></div>
-        <div class="description">
-          <div class="name">Steam Level</div>
-        </div>
-      </div>
-    </div>
+    <!-- 기본 미니프로필 내용 -->
   </div>
 </body>
 </html>
