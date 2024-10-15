@@ -20,7 +20,7 @@
       let language = searchParams.get('lang') ? searchParams.get('lang') : 'koreana';
       
       // Serverless Function URL
-      let apiURL = `https://steam-miniprofile.vercel.app/api/steamProxy?steamId=${steamId}&language=${language}`;
+      let apiURL = `https://steam-miniprofile.vercel.app/api/steamProxy`;
 
       $.get(apiURL, function (data) {
         $("#includedContent").html(data).hide();
