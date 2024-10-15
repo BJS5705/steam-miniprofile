@@ -19,10 +19,10 @@
       let steamId = searchParams.get('accountId') ? searchParams.get('accountId') : '76561198055079301';
       let language = searchParams.get('lang') ? searchParams.get('lang') : 'koreana';
       
-      // 기존 미니프로필 URL 사용
-      let steamURL = `https://steamcommunity.com/miniprofile/${steamId}?l=${language}`;
+      // Serverless Function URL
+      let apiURL = `https://steam-miniprofile.vercel.app/api/steamProxy?steamId=${steamId}&language=${language}`;
 
-      $.get(steamURL, function (data) {
+      $.get(apiURL, function (data) {
         $("#includedContent").html(data).hide();
         if ($("#includedContent").children().text().length != 0) {
           $(".default").fadeOut("fast", function () {
@@ -79,5 +79,4 @@
     </div>
   </div>
 </body>
-
 </html>
