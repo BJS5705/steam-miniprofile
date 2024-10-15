@@ -15,12 +15,12 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer async>
     $(function () {
-      let searchParams = new URLSearchParams(window.location.search);
-      let steamId = searchParams.get('accountId') ? searchParams.get('accountId') : '76561198055079301';
-      let language = searchParams.get('lang') ? searchParams.get('lang') : 'koreana';
+      // 기본 값 설정
+      let steamId = '76561198055079301'; // 기본 steamId
+      let language = 'koreana'; // 기본 language
       
       // Serverless Function URL
-      let apiURL = `https://steam-miniprofile.vercel.app/api/steamProxy`;
+      let apiURL = `https://steam-miniprofile.vercel.app/api/steamProxy?steamId=${steamId}&language=${language}`;
 
       $.get(apiURL, function (data) {
         $("#includedContent").html(data).hide();
