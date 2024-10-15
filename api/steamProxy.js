@@ -1,4 +1,4 @@
-ㅍ// api/steamProxy.js
+// api/steamProxy.js
 export default async function handler(req, res) {
     const { steamId, language } = req.query; // 쿼리 파라미터에서 steamId와 language를 가져옵니다.
     const url = `https://steamcommunity.com/miniprofile/${steamId}?l=${language}`;
